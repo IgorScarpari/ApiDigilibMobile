@@ -1,3 +1,4 @@
+const user = require("../models/user");
 const User  = require("../models/user");
 
 
@@ -65,6 +66,10 @@ exports.create = async (req, res) => {
             const newUser = await User.create({
                 name: user.name,
                 email: user.email,
+                lastName: user.lastName,
+                phoneNumber:user.phoneNumber,
+                acessGroup: user.acessGroup,
+                userImage: user.userImage,
                 password: user.password,
                 registration: user.registration,
                 occupation: user.occupation
@@ -92,6 +97,18 @@ exports.update = async (req, res) => {
         }
         if (!!req.body.email) {
             payload.email = req.body.email;
+        }
+        if (!!req.body.lastName) {
+            payload.lastName = req.body.lastName;
+        }
+        if (!!req.body.phoneNumber) {
+            payload.phoneNumber = req.body.phoneNumber;
+        }
+        if (!!req.body.acessGroup) {
+            payload.acessGroup = req.body.acessGroup;
+        }
+        if (!!req.body.userImage) {
+            payload.userImage = req.body.userImage;
         }
         if (!!req.body.occupation) {
             payload.occupation = req.body.occupation;
@@ -124,59 +141,3 @@ exports.delete = async (req, res) => {
         res.status(500).json(err);
     }
 };
-
-// Validation functions
-//const jwt = require("jsonwebtoken");
-//const dotenv = require("dotenv").config();
-//const { encryptSHA256 } = require("../auth");
-//const TOKEN_SECRET = process.env.TOKEN_SECRET;
-
-// exports.checkLogin = async (req, res) => {
-
-//     const { email, password } = req.body;
-
-//     const user =  await User.findOne({
-//         attributes: ["id", "name", "email", "isAdmin"],
-//         where: { email, password: encryptSHA256(password) },
-//         raw: true,
-//     });
-
-//     if (!!user) {
-//         const token = jwt.sign({ ...user, sub: user.id }, TOKEN_SECRET);
-//         const userId = user.id;
-//         res.json({
-//             userId,
-//             token,
-//             sucess: true,
-//             error: false,
-//         });
-//     } else {
-//         res.status(401).json({ error: "Email or password is invalid." });
-//     }
-
-// };
-
-
-// exports.changePassword = async (req, res) => {
-//     try {
-//         const { id } = req.params
-//         const { oldPassword, newPassword } = req.body;
-
-
-//         const user = await User.updateOne(
-//             //filter
-//             { _id: id, password: encryptSHA256(oldPassword) },
-//             //changed value
-//             { password: encryptSHA256(newPassword) });
-
-//         if (!!user.modifiedCount <= 0) {
-//             res.status(400).json({ error: "Old password is invalid." })
-//         }
-//         else {
-//             return res.status(200).json({ status: true });
-//         }
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json(err);
-//     }
-// };
