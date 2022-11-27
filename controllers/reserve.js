@@ -37,7 +37,9 @@ exports.create = async (req, res) => {
             returnDate: req.body.returnDate,
             bookId: req.body.bookId,
             userId: req.body.userId,
-            
+            reserveDate: req.body.reserveDate,
+            reserveStatus: req.body.reserveStatus,
+            observation: req.body.observation
         });
         res.json(newReserve);
     } catch(err) {
@@ -60,6 +62,15 @@ exports.update = async (req, res) => {
       }
       if (!!req.body.userId) {
           payload.userId = req.body.userId;
+      }
+      if (!!req.body.reserveDate) {
+        payload.reserveDate = req.body.reserveDate;
+      }
+      if (!!req.body.reserveStatus) {
+          payload.reserveStatus = req.body.reserveStatus;
+      }
+      if (!!req.body.observation) {
+          payload.observation = req.body.observation;
       }
 
       const updatedReserve = await Reserve.update(payload, {
