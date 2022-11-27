@@ -65,14 +65,12 @@ exports.create = async (req, res) => {
             user = req.body;
             const newUser = await User.create({
                 name: user.name,
-                email: user.email,
+                registration: user.registration,
                 lastName: user.lastName,
                 phoneNumber:user.phoneNumber,
+                email: user.email,
                 acessGroup: user.acessGroup,
                 userImage: user.userImage,
-                password: user.password,
-                registration: user.registration,
-                occupation: user.occupation
             });
 
             res.json(newUser);
@@ -95,23 +93,20 @@ exports.update = async (req, res) => {
         if (!!req.body.registration) {
             payload.registration = req.body.registration;
         }
-        if (!!req.body.email) {
-            payload.email = req.body.email;
-        }
         if (!!req.body.lastName) {
             payload.lastName = req.body.lastName;
         }
         if (!!req.body.phoneNumber) {
             payload.phoneNumber = req.body.phoneNumber;
         }
+        if (!!req.body.email) {
+            payload.email = req.body.email;
+        }
         if (!!req.body.acessGroup) {
             payload.acessGroup = req.body.acessGroup;
         }
         if (!!req.body.userImage) {
             payload.userImage = req.body.userImage;
-        }
-        if (!!req.body.occupation) {
-            payload.occupation = req.body.occupation;
         }
 
         const updatedUser = await User.update(payload, {
