@@ -24,7 +24,10 @@ module.exports = database.sequelize.define('Users', {
       default: "Estudante",
       required: false
     },
-    userImage: Sequelize.BLOB,
+    userImage: { 
+      type: Sequelize.BLOB('long'), // <- type for image ( database :postgresql )
+      allowNull: true 
+    },
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
   }, {
