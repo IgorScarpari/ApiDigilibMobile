@@ -51,8 +51,6 @@ exports.findByCode = async (req, res) => {
     }
 };
 
-var fs = require('fs');
-
 //POST
 exports.create = async (req, res) => {
     try {
@@ -71,7 +69,7 @@ exports.create = async (req, res) => {
             publishingCompany: req.body.publishingCompany,
             publishDate: req.body.publishDate,
             pages: req.body.pages,
-            bookImage: fs.readFileSync('https://media.jvt.me/03019529e6.png', 'base64'),
+            bookImage: req.body.bookImage,
             bookSituation: req.body.bookSituation,
             genre: req.body.genre,
             collection: req.body.collection,
