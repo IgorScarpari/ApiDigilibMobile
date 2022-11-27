@@ -1,54 +1,39 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Books extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Books.hasMany(models.Reserves)
-    }
-  }
-  Books.init({
+const Sequelize = require('sequelize');
+const database = require('../db');
+
+module.exports = database.sequelize.define('Books', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true
     },
-    internalCode: DataTypes.INTEGER,
-    isbn: DataTypes.STRING,
+    internalCode: Sequelize.INTEGER,
+    isbn: Sequelize.STRING,
     title: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       required: true,
     },
-    subtitle: DataTypes.STRING,
-    genre: DataTypes.STRING,
-    volume: DataTypes.STRING,
-    edition: DataTypes.STRING,
-    collection: DataTypes.STRING,
-    language: DataTypes.STRING,
-    synopsis: DataTypes.STRING,
-    originCountry: DataTypes.STRING,
-    author: DataTypes.STRING,
-    authorLastName: DataTypes.STRING,
-    publishingCompany: DataTypes.STRING,
-    publishDate: DataTypes.DATE,
-    pages: DataTypes.INTEGER,
-    ageGroup: DataTypes.INTEGER,
-    bookImage: DataTypes.BLOB,
+    subtitle: Sequelize.STRING,
+    genre: Sequelize.STRING,
+    volume: Sequelize.STRING,
+    edition: Sequelize.STRING,
+    collection: Sequelize.STRING,
+    language: Sequelize.STRING,
+    synopsis: Sequelize.STRING,
+    originCountry: Sequelize.STRING,
+    author: Sequelize.STRING,
+    authorLastName: Sequelize.STRING,
+    publishingCompany: Sequelize.STRING,
+    publishDate: Sequelize.DATE,
+    pages: Sequelize.INTEGER,
+    ageGroup: Sequelize.INTEGER,
+    bookImage: Sequelize.BLOB,
     bookSituation: {
-      type: DataTypes.ENUM("Livre", "Emprestado", "Perdido", "Extraviado"),
+      type: Sequelize.ENUM("Livre", "Emprestado", "Perdido", "Extraviado"),
       default: "Livre",
       required: false
     },
   }, {
-    sequelize,
     modelName: 'Books',
   });
-  return Books;
-};
