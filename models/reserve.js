@@ -1,35 +1,24 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Reserves extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Reserves.belongsTo(models.Users)
-      Reserves.belongsTo(models.Books)
-    }
-  }
-  Reserves.init({
+const Sequelize = require('sequelize');
+const database = require('../db');
+
+module.exports = database.sequelize.define('Reserves', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true
     },
-    bookCode: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    reserveDate: DataTypes.DATE,
-    returnDate: DataTypes.DATE,
-    reserveStatus: DataTypes.STRING,
-    observation: DataTypes.STRING
+    bookId: Sequelize.INTEGER,
+    userId: Sequelize.INTEGER,
+    reserveDate: Sequelize.DATE,
+    returnDate: Sequelize.DATE,
+    reserveStatus: Sequelize.STRING,
+    observation: Sequelize.STRING
   }, {
-    sequelize,
     modelName: 'Reserves',
+    hooks: {
+      beforeCount(options) {
+          options.raw = true;
+      }
+  }
   });
-  return Reserves;
-};
