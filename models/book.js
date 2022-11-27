@@ -28,7 +28,10 @@ module.exports = database.sequelize.define('Books', {
     publishDate: Sequelize.DATE,
     pages: Sequelize.INTEGER,
     ageGroup: Sequelize.INTEGER,
-    bookImage: Sequelize.BLOB,
+    bookImage: { 
+      type: Sequelize.BLOB('long'), // <- type for image ( database :postgresql )
+      allowNull: true 
+    },
     bookSituation: {
       type: Sequelize.ENUM("Livre", "Emprestado", "Perdido", "Extraviado"),
       default: "Livre",
