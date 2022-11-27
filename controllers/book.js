@@ -1,23 +1,9 @@
-/* const responseModel = {
-    sucess: false,
-    data: [],
-    error: []
-}
-
-module.exports={
-    async insert(req,res){
-        const response = {...responseModel}
-
-        return res.json(response)
-    }
-} */
-
-const { Books } = require("../models/book");
+const Book = require("../models/book");
 
 //GET: Search all books.
 exports.findAll = async (req, res) => {
     try {
-        const books = await Books.findAll({
+        const books = await Book.findAll({
             order: [["title", "ASC"]],
             raw: true,
         });
@@ -31,7 +17,7 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
     const { id } = req.params;
     try {
-        const book = await Books.findOne({
+        const book = await Book.findOne({
             where: { id }
         });
 
@@ -50,7 +36,7 @@ exports.findOne = async (req, res) => {
 exports.findByCode = async (req, res) => {
     const { code } = req.params;
     try {
-        const book = await Books.findOne({
+        const book = await Book.findOne({
             where: { code }
         });
 
@@ -68,7 +54,7 @@ exports.findByCode = async (req, res) => {
 //POST
 exports.create = async (req, res) => {
     try {
-        const newBook = await Books.create({
+        const newBook = await Book.create({
             internalCode: req.body.internalCode,
             isbn: req.body.isbn,
             title: req.body.title,
@@ -155,7 +141,7 @@ exports.update = async (req, res) => {
             payload.bookSituation = req.body.bookSituation;
         }
 
-        const updatedBook = await Books.update(payload, {
+        const updatedBook = await Book.update(payload, {
             where: { id },
         });
 
@@ -170,7 +156,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const { id } = req.params;
     try {
-        const deletedBook = await Books.destroy({ where: { id } });
+        const deletedBook = await Book.destroy({ where: { id } });
 
         res.json({ success: !!deletedBook });
     } catch (err) {
