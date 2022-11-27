@@ -70,8 +70,10 @@ exports.create = async (req, res) => {
             publishDate: req.body.publishDate,
             pages: req.body.pages,
             bookImage: req.body.bookImage,
-            bookSituation: req.body.bookSituation
-
+            bookSituation: req.body.bookSituation,
+            genre: req.body.genre,
+            collection: req.body.collection,
+            ageGroup: req.body.ageGroup
         });
         res.json(newBook);
     } catch (err) {
@@ -139,6 +141,15 @@ exports.update = async (req, res) => {
         }
         if (!!req.body.bookSituation) {
             payload.bookSituation = req.body.bookSituation;
+        }
+        if (!!req.body.genre) {
+            payload.genre = req.body.genre;
+        }
+        if (!!req.body.collection) {
+            payload.collection = req.body.collection;
+        }
+        if (!!req.body.ageGroup) {
+            payload.ageGroup = req.body.ageGroup;
         }
 
         const updatedBook = await Book.update(payload, {
