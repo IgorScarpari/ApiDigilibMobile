@@ -24,9 +24,13 @@ module.exports = database.sequelize.define('Users', {
       default: "Estudante",
       required: false
     },
-    userImage: Sequelize.BLOB
+    userImage: Sequelize.BLOB,
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
   }, {
     modelName: 'Users',
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt',
     hooks: {
       beforeCount(options) {
         options.raw = true;
