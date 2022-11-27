@@ -12,7 +12,7 @@ module.exports={
     }
 } */
 
-const { Books } = require("../models");
+const { Books } = require("../models/book");
 
 //GET: Search all books.
 exports.findAll = async (req, res) => {
