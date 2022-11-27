@@ -1,10 +1,14 @@
-# api
+App para Gerenciamento de Livros (Digilib Manager App).
 
-School library book reserve management project.
+Equipe: Bruno Jose Dimon Boger
+	   Douglas Kuerten
+	   Igor Paulino da Silva
+	   Igor Scarsi Scarpari
+	   Yuri Bonfante de Souza Damim
 
-This project includes the backend of the web application, developed in Node.Js.
 
-After cloning this project you will need to run the command "npm install".
+API: https://github.com/IgorScarpari/ApiDigilibMobile
 
-To run the API you must run the command "npm start", the API will run on "localhost:3000".
+ABP Mobile: https://github.com/DouglasKuerten/DigilibMobile
 
+Servidor API: https://book-library-mobile-api.onrender.com
