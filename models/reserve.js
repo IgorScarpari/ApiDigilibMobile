@@ -13,9 +13,13 @@ module.exports = database.sequelize.define('Reserves', {
     reserveDate: Sequelize.DATE,
     returnDate: Sequelize.DATE,
     reserveStatus: Sequelize.STRING,
-    observation: Sequelize.STRING
+    observation: Sequelize.STRING,
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
   }, {
     modelName: 'Reserves',
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt',
     hooks: {
       beforeCount(options) {
           options.raw = true;
