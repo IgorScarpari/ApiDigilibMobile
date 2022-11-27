@@ -34,6 +34,10 @@ module.exports = database.sequelize.define('Books', {
       default: "Livre",
       required: false
     },
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
   }, {
     modelName: 'Books',
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt',
   });
