@@ -1,45 +1,36 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Users extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      Users.hasMany(models.Reserves)
-    }
-  }
-  Users.init({
+const Sequelize = require('sequelize');
+const database = require('../db');
+
+module.exports = database.sequelize.define('Users', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true
     },
     registration: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       required: true,
     },
     name: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       required: true,
     },
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
+    lastName: Sequelize.STRING,
+    email: Sequelize.STRING,
+    phoneNumber: Sequelize.STRING,
     acessGroup: {
-      type: DataTypes.ENUM("Admin", "Professor", "Estudante"),
+      type: Sequelize.ENUM("Admin", "Professor", "Estudante"),
       default: "Estudante",
       required: false
     },
-    userImage: DataTypes.BLOB
+    userImage: Sequelize.BLOB
   }, {
     sequelize,
     modelName: 'Users',
+    hooks: {
+      beforeCount(options) {
+        options.raw = true;
+      }
+    }
   });
-  return Users;
-};
