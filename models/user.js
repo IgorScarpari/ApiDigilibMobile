@@ -26,7 +26,6 @@ module.exports = database.sequelize.define('Users', {
     },
     userImage: Sequelize.BLOB
   }, {
-    sequelize,
     modelName: 'Users',
     hooks: {
       beforeCount(options) {
