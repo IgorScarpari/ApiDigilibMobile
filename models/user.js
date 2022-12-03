@@ -20,8 +20,8 @@ module.exports = database.sequelize.define('Users', {
     email: Sequelize.STRING,
     phoneNumber: Sequelize.STRING,
     acessGroup: {
-      type: Sequelize.ENUM("Admin", "Professor", "Estudante"),
-      default: "Estudante",
+      type: Sequelize.ENUM("Admin", "Professor", "Aluno"),
+      default: "Aluno",
       required: false
     },
     userImage: { 
