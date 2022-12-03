@@ -12,7 +12,11 @@ module.exports = database.sequelize.define('Reserves', {
     userId: Sequelize.INTEGER,
     reserveDate: Sequelize.DATE,
     returnDate: Sequelize.DATE,
-    reserveStatus: Sequelize.STRING,
+    reserveStatus: {
+      type: Sequelize.ENUM("Ativa", "Cancelada", "Concluída"),
+      default: "Ativa",
+      required: false
+    },
     observation: Sequelize.STRING,
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
