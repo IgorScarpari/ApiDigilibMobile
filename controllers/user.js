@@ -69,7 +69,7 @@ exports.create = async (req, res) => {
                 phoneNumber:user.phoneNumber,
                 email: user.email,
                 acessGroup: user.acessGroup,
-                userImage: Buffer.from(user.userImage),
+                userImage: user.userImage,
             });
 
             res.json(newUser);
