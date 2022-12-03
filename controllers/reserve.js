@@ -56,6 +56,55 @@ exports.findByUserOrBook = async (req, res) => {
   }
 };
 
+//GET: Search by user or book.
+exports.findByBook = async (req, res) => {
+  const { bookId } = req.params;
+
+  try {
+    
+    let where = {};
+      
+    if (bookId != "null" || !bookId) where.bookId = bookId;
+ 
+    const reserves = await Reserve.findAll({
+      where,
+    });
+
+    if (!!reserves) {
+      res.status(200).json(reserves);
+    } else {
+      res.status(404).json({ error: "Reserve not found." });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
+
+//GET: Search by user or book.
+exports.findByUser = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    
+    let where = {};
+      
+    if (userId != "null" || !userId) where.userId = userId;
+ 
+    const reserves = await Reserve.findAll({
+      where,
+    });
+
+    if (!!reserves) {
+      res.status(200).json(reserves);
+    } else {
+      res.status(404).json({ error: "Reserve not found." });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+};
 //POST: Insert a reserve.
 exports.create = async (req, res) => {
     try {
