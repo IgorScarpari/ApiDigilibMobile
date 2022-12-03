@@ -35,7 +35,7 @@ exports.findByUserOrBook = async (req, res) => {
   const { bookId, userId } = req.params;
 
   try {
-    const where = {};
+    let where = {};
 
     if (bookId != "null" || !bookId) where.bookId = bookId;
     if (userId != "null" || !userId) where.userId = userId;
