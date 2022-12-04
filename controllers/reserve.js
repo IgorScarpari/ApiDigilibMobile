@@ -10,7 +10,6 @@ exports.findAll = async (req, res) => {
     }
 };
 
-
 //GET: Search reserves by id receive.
 exports.findOne = async (req, res) => {
     const { id } = req.params;
