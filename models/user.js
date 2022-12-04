@@ -14,33 +14,33 @@ module.exports = (sequelize, DataTypes) => {
   User.init(
     {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
       registration: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         required: true,
       },
       name: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         required: true,
       },
-      lastName: Sequelize.STRING,
-      email: Sequelize.STRING,
-      phoneNumber: Sequelize.STRING,
+      lastName: DataTypes.STRING,
+      email: DataTypes.STRING,
+      phoneNumber: DataTypes.STRING,
       acessGroup: {
-        type: Sequelize.ENUM("Admin", "Professor", "Aluno"),
+        type: DataTypes.ENUM("Admin", "Professor", "Aluno"),
         default: "Aluno",
         required: false
       },
       userImage: { 
-        type: Sequelize.BLOB('long'), // <- type for image ( database :postgresql )
+        type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
         allowNull: true 
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE
     },
     {
       sequelize,
