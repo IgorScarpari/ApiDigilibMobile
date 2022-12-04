@@ -18,7 +18,8 @@ exports.findOne = async (req, res) => {
     const { id } = req.params;
     try {
         const reserve = await Reserve.findOne({ 
-            where: { id } 
+            where: { id },
+            include: [Book, User],
         });
 
         if (!!reserve) {
@@ -45,6 +46,7 @@ exports.findByUserOrBook = async (req, res) => {
  
     const reserves = await Reserve.findAll({
       where,
+      include: [Book, User],
     });
 
     if (!!reserves) {
@@ -70,6 +72,7 @@ exports.findByBook = async (req, res) => {
  
     const reserves = await Reserve.findAll({
       where,
+      include: [Book, User],
     });
 
     if (!!reserves) {
