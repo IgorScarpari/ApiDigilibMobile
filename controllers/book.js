@@ -55,7 +55,7 @@ exports.findByCode = async (req, res) => {
 exports.create = async (req, res) => {
     try {
         const newBook = await Book.create({
-            internalCode: req.body.internalCode,
+            internalCode: req.body.internalCode != "null" || req.body.internalCode != null || req.body.internalCode != "" ? req.body.internalCode : Math.random(),
             isbn: req.body.isbn,
             title: req.body.title,
             subtitle: req.body.subtitle,
