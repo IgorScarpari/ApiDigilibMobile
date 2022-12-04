@@ -33,11 +33,11 @@ exports.findOne = async (req, res) => {
 };
 
 //GET: Search books by code receive.
-exports.findByCode = async (req, res) => {
-    const { code } = req.params;
+exports.findByInternalCode = async (req, res) => {
+    const { internalCode } = req.params;
     try {
         const book = await Book.findOne({
-            where: { code }
+            where: { internalCode }
         });
 
         if (!!book) {
