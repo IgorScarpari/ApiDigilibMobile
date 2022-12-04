@@ -95,6 +95,7 @@ exports.findByUser = async (req, res) => {
  
     const reserves = await Reserve.findAll({
       where,
+      include: [Book, User],
     });
 
     if (!!reserves) {
