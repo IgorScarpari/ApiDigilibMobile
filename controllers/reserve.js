@@ -1,15 +1,16 @@
-const Book = require("../models/book");
-const Reserve = require("../models/reserve");
-const User = require("../models/user");
+const { Book, Reserve, User } = require("../models");
 
 //GET: Search all reserves.
 exports.findAll = async (req, res) => {
-    try {
-        const reserves = await Reserve.findAll();
-        res.json(reserves);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  try {
+    const reserves = await Reserve.findAll({
+      include: [Book, User],
+    });
+
+    res.json(reserves);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 //GET: Search reserves by id receive.
