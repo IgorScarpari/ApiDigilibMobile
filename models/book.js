@@ -14,42 +14,42 @@ module.exports = (sequelize, DataTypes) => {
     Book.init(
         {
           id: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true
           },
-          internalCode: Sequelize.INTEGER,
-          isbn: Sequelize.STRING,
+          internalCode: DataTypes.INTEGER,
+          isbn: DataTypes.STRING,
           title: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             required: true,
           },
-          subtitle: Sequelize.STRING,
-          genre: Sequelize.STRING,
-          volume: Sequelize.STRING,
-          edition: Sequelize.STRING,
-          collection: Sequelize.STRING,
-          language: Sequelize.STRING,
-          synopsis: Sequelize.STRING,
-          originCountry: Sequelize.STRING,
-          author: Sequelize.STRING,
-          authorLastName: Sequelize.STRING,
-          publishingCompany: Sequelize.STRING,
-          publishDate: Sequelize.DATE,
-          pages: Sequelize.INTEGER,
-          ageGroup: Sequelize.INTEGER,
+          subtitle: DataTypes.STRING,
+          genre: DataTypes.STRING,
+          volume: DataTypes.STRING,
+          edition: DataTypes.STRING,
+          collection: DataTypes.STRING,
+          language: DataTypes.STRING,
+          synopsis: DataTypes.STRING,
+          originCountry: DataTypes.STRING,
+          author: DataTypes.STRING,
+          authorLastName: DataTypes.STRING,
+          publishingCompany: DataTypes.STRING,
+          publishDate: DataTypes.DATE,
+          pages: DataTypes.INTEGER,
+          ageGroup: DataTypes.INTEGER,
           bookImage: { 
-            type: Sequelize.BLOB('long'), // <- type for image ( database :postgresql )
+            type: DataTypes.BLOB('long'), // <- type for image ( database :postgresql )
             allowNull: true 
           },
           bookSituation: {
-            type: Sequelize.ENUM("Livre", "Emprestado", "Perdido", "Extraviado"),
+            type: DataTypes.ENUM("Livre", "Emprestado", "Perdido", "Extraviado"),
             default: "Livre",
             required: false
           },
-          createdAt: Sequelize.DATE,
-          updatedAt: Sequelize.DATE,
+          createdAt: DataTypes.DATE,
+          updatedAt: DataTypes.DATE,
         },
         {
             sequelize,
