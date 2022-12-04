@@ -3,7 +3,9 @@ const Reserve = require("../models/reserve");
 //GET: Search all reserves.
 exports.findAll = async (req, res) => {
     try {
-        const reserves = await Reserve.findAll();
+       const reserves = await Reserve.findAll({
+           include: [Book, User],
+       });
         res.json(reserves);
     } catch (err) {
         res.status(500).json({ error: err.message });
