@@ -17,19 +17,19 @@ module.exports = (sequelize, DataTypes) => {
   Reserve.init(
     {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
-      bookId: Sequelize.INTEGER,
-      userId: Sequelize.INTEGER,
-      reserveDate: Sequelize.DATE,
-      returnDate: Sequelize.DATE,
-      reserveStatus: Sequelize.STRING,
-      observation: Sequelize.STRING,
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE
+      bookId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
+      reserveDate: DataTypes.DATE,
+      returnDate: DataTypes.DATE,
+      reserveStatus: DataTypes.STRING,
+      observation: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE
     },
     {
       sequelize,
