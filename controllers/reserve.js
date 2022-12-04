@@ -1,4 +1,6 @@
-const { Book, Reserve, User } = require("../models");
+const Book = require("../models/book");
+const Reserve = require("../models/reserve");
+const User = require("../models/user");
 
 //GET: Search all reserves.
 exports.findAll = async (req, res) => {
