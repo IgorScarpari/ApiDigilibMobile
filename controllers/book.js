@@ -64,7 +64,7 @@ exports.create = async (req, res) => {
         ).data, "utf-8").toString("base64")
         
         const newBook = await Book.create({
-            internalCode: req.body.internalCode != "null" && req.body.internalCode != null && req.body.internalCode != "" ? req.body.internalCode : Math.random(),
+            internalCode: req.body.internalCode != "null" && req.body.internalCode != null && req.body.internalCode != "" ? req.body.internalCode : Math.floor(Math.random() * 1000),
             isbn: req.body.isbn,
             title: req.body.title,
             subtitle: req.body.subtitle,
