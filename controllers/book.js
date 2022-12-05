@@ -54,6 +54,15 @@ exports.findByInternalCode = async (req, res) => {
 //POST
 exports.create = async (req, res) => {
     try {
+
+        var axios = require('axios')
+        let image = Buffer.from(
+         (
+           await axios.get("https://cdn-icons-png.flaticon.com/512/2232/2232688.png", {
+           responseType: "arraybuffer",
+         })
+        ).data, "utf-8").toString("base64")
+        
         const newBook = await Book.create({
             internalCode: req.body.internalCode != "null" || req.body.internalCode != null || req.body.internalCode != "" ? req.body.internalCode : Math.random(),
             isbn: req.body.isbn,
@@ -69,7 +78,7 @@ exports.create = async (req, res) => {
             publishingCompany: req.body.publishingCompany,
             publishDate: req.body.publishDate,
             pages: req.body.pages,
-            bookImage: req.body.bookImage,
+            bookImage: image,
             bookSituation: req.body.bookSituation,
             genre: req.body.genre,
             collection: req.body.collection,
@@ -137,7 +146,16 @@ exports.update = async (req, res) => {
             payload.pages = req.body.ageGroup;
         }
         if (!!req.body.bookImage) {
-            payload.bookImage = req.body.bookImage;
+
+            var axios = require('axios')
+            let image = Buffer.from(
+             (
+               await axios.get("https://cdn-icons-png.flaticon.com/512/2232/2232688.png", {
+               responseType: "arraybuffer",
+             })
+            ).data, "utf-8").toString("base64")
+
+            payload.bookImage = image;            
         }
         if (!!req.body.bookSituation) {
             payload.bookSituation = req.body.bookSituation;
