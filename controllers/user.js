@@ -60,15 +60,6 @@ exports.create = async (req, res) => {
         res.status(401).json({ error: "Email is invalid or already taken." });
     } else {
         try {
-
-            var axios = require('axios')
-            let image = Buffer.from(
-             (
-               await axios.get("https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png", {
-               responseType: "arraybuffer",
-             })
-            ).data, "utf-8").toString("base64")
-            
             user = req.body;
             const newUser = await User.create({
                 name: user.name,
@@ -77,7 +68,7 @@ exports.create = async (req, res) => {
                 phoneNumber:user.phoneNumber,
                 email: user.email,
                 acessGroup: user.acessGroup,
-                userImage: image,
+                userImage: user.userImage,
             });
 
             res.json(newUser);
