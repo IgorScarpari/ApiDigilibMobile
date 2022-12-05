@@ -113,7 +113,16 @@ exports.update = async (req, res) => {
             payload.acessGroup = req.body.acessGroup;
         }
         if (!!req.body.userImage) {
-            payload.userImage = req.body.userImage;
+           
+            var axios = require('axios')
+            let image = Buffer.from(
+             (
+               await axios.get("https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png", {
+               responseType: "arraybuffer",
+             })
+            ).data, "utf-8").toString("base64")
+
+            payload.userImage = image;            
         }
 
         const updatedUser = await User.update(payload, {
